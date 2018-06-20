@@ -1,13 +1,19 @@
-var express = require('express');
+const express = require('express');
 var fs = require('fs');
 var _ = require('underscore');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override')
 
-var app = express.createServer();
+const app = express();
 
-app.configure(function () {
-    app.use(express.methodOverride());
-    app.use(express.bodyParser());
-});
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+// override with the X-HTTP-Method-Override header in the request
+app.use(methodOverride('X-HTTP-Method-Override'))
 
 /* oAuth example:
 *
@@ -99,7 +105,6 @@ app.get('/users/me', function (req, res) {
  * */
 
 app.get('/categories/MLA123/attributes', function (req, res) {
-    */
     res.send([{
         "id": "SELLER_SKU",
         "name": "SKU ",
@@ -617,6 +622,7 @@ app.delete('/items/123', function (wreq, res) {
 
 /* GET user-agent information: */
 app.get('/echo/user_agent', function (req, res) {
+    console.log('inside echo user agent');
     if (req.headers['user-agent'].match(/MELI-JAVA-SDK-.*/))
         res.send(200);
     else

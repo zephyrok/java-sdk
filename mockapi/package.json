@@ -2,8 +2,10 @@
     "name": "mockapi",
     "version": "1.0.0",
     "dependencies": {
-        "express": "2.5.x",
-        "underscore": "^1.8.3"
+        "body-parser": "^1.18.3",
+        "express": "^4.16.3",
+        "method-override": "^2.3.10",
+        "underscore": "^1.9.1"
     },
     "engine": "node ~> 0.8.x"
 }
