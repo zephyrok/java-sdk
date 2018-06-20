@@ -3,3 +3,7 @@
 .settings/
 target/
 mockapi/node_modules
+
+\.idea/
+
+sdk\.iml
